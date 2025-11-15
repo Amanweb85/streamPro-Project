@@ -1,0 +1,96 @@
+<!-- Modal Container -->
+<div class="overlay"></div>
+<div class="auth-container">
+  <div>
+    <div class="auth-header">
+      <h3>Welcome to StreamPro</h3>
+      <!-- <p>Sign in to your account or create a new one to get started.</p> -->
+      <button class="cancel-btn" type="button">&#x2716;</button>
+    </div>
+    <div class="tab-list">
+      <button class="signIn-ops" type="button">Sign In</button>
+      <button class="signUp-ops" type="button">Sign Up</button>
+    </div>
+    <div class="auth-body">
+      <div class="body-header">
+        <h3>Sign Up</h3>
+        <p class="auth-msg">Create a new account to start streaming</p>
+      </div>
+      <div class="card-content">
+        <form class="auth-form" action="/" method="POST">
+          <div class="full-name-group">
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required />
+          </div>
+          <div class="email-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required />
+          </div>
+          <div class="password-group">
+            <label for="password">Password</label>
+            <div class="password-container">
+              <input type="password" id="password" name="password" placeholder="Create a password" minlength="8" title="Please enter at least 8 digits." required="">
+              <img class="pass-view-icon" src="/dist/images/icon-eye.png" alt="view password">
+            </div>
+            <!-- <input type="password" id="password" name="password" placeholder="Create a password" minlength="8" title="Please enter at least 8 digits." required /> -->
+          </div>
+          <div class="confirm-password-group">
+            <label for="confirm-password">Confirm Password</label>
+            <div class="password-container">
+              <input type="password" id="confirm-password" name="password" placeholder="Confirm your password" minlength="8" title="Please enter at least 8 digits." required="">
+              <img class="confirm-pass-view-icon" src="/dist/images/icon-eye.png" alt="View password">
+            </div>
+            <!-- <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" minlength="8" required /> -->
+          </div>
+          <button class="submit-btn" type="submit">Sign In</button>
+          <div class="divider">
+            <span>
+              or
+            </span>
+
+          </div>
+
+        </form>
+        <form class="googleAuth-form" action="api/auth/google"> <button class="google-auth-btn" type="submit"><img src="/dist/images/google-icon.png" alt="">
+            Continue with Google
+          </button></form>
+
+        <div class="footer">
+          By signing up, you agree to our Terms of Service and Privacy Policy
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--******************** enter otp container ****************-->
+
+<div class="otp-container">
+  <div class="icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.06.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.95-1.095-2.235-1.558-3.593-1.803a5.555 5.555 0 0 0-1.07-.133.56.56 0 0 0-.172 0c-.396.06-.83.18-1.294.354a1.53 1.53 0 0 0-.327.15c-.246.113-.578.293-.913.532z" />
+      <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+    </svg>
+  </div>
+
+  <h2>Verify your code</h2>
+  <p>We have sent a code to your email<br><strong>is***a8@gmail.com</strong></p>
+  <form class="otp-form" action="">
+    <div class="code-container">
+
+      <input type="number" name="d1" class="code-input" min="0" max="9" required maxlength="1">
+      <input type="number" name="d2" class="code-input" min="0" max="9" required maxlength="1">
+      <input type="number" name="d3" class="code-input" min="0" max="9" required maxlength="1">
+      <input type="number" name="d4" class="code-input" min="0" max="9" required maxlength="1">
+      <input type="number" name="d5" class="code-input" min="0" max="9" required maxlength="1">
+      <input type="number" name="d6" class="code-input" min="0" max="9" required maxlength="1">
+    </div>
+    <p class="otp-message"></p>
+
+    <button type="submit" class="verify-btn">Verify</button>
+  </form>
+  <p class="resend-text">Didn't recieve code? <a href="#">Resend</a></p>
+
+</div>

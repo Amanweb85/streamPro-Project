@@ -1,0 +1,13 @@
+<!-- ---------- channel-card ---------->
+<div class="channel flex-box" id="<%= item.id%>">
+  <a class="channel-image-box flex-box">
+    <img class="channel-image" src="<%= item.snippet.thumbnails.maxres?.url || item.snippet.thumbnails.high?.url || item.snippet.thumbnails.medium?.url %>" />
+  </a>
+  <a class="channel-details flex-box">
+    <h2 class="channel-title">
+      <%= item.snippet.title %>
+    </h2>
+    <p><%=changeFormate(item.statistics.subscriberCount)%> subscribers</p>
+  </a>
+  <a class="subscribe-button">Subscribe</a>
+</div>

@@ -1,0 +1,24 @@
+<a class=" video vid-box" href="/watch?id=<%=item.id.videoId %>" id="id<%=item.id.videoId %>">
+  <div class="thumbnail-container" id="<%=item.id.videoId%> ">
+    <img class="thumbnail" style="object-fit: cover; width: 100%" src="<%=item.snippet.thumbnails.medium.url%>" />
+    <div class="play-icon-container">
+      <img class="play-icon" src="/dist/images/icon-play.png" />
+    </div>
+  </div>
+  <div class="vid-details flex-box">
+    <div>
+      <div class="vid-title">
+        <p><%=item.snippet.title%></p>
+      </div>
+      <h4 class="channel-title"><%=item.snippet.channelTitle%></h4>
+      <div class="views-time-container">
+        <img class="eye-icon" src="/dist/images/icon-eye.png" />&nbsp;<span class="views">none</span>
+        &nbsp;&nbsp;
+        <img class="time-icon" src="/dist/images/icon-time.png" />&nbsp;<span class="published-duration">
+          <%=changeTimeFormate(item.snippet.publishTime)%>
+        </span>
+      </div>
+    </div>
+    <span class="three-dots">&#8942;</span>
+  </div>
+</a>

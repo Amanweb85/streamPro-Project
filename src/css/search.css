@@ -1,0 +1,502 @@
+/* =========================
+   Variables & Theme Setup
+   ========================= */
+:root {
+  /* Colors (light/default theme) */
+  --bg: #ffffff; /* body background */
+  --text-color: rgba(0, 0, 0, 0.933);
+  --container-bg: #ffffff;
+  --text-primary: rgb(40, 40, 40); /* many h4, text colors */
+  --text-muted: rgb(135, 134, 134);
+  --navbar-background: #ffffff75;
+  /* link/secondary text  (left-panel's paragraph-text color) */
+  --accent: #ed3833; /* red highlight used many places */
+  --accent-2: rgb(176 176 176 / 36%); /* search focus color */
+  --nav-shadow: rgba(147, 147, 147, 0.61);
+  --panel-surface: rgba(245, 245, 245, 0.77); /* channel, vid-box base */
+  --transparent: transparent;
+  --black-opaque: rgba(0, 0, 0, 0.76);
+  --input-bg: #232323;
+  --icon-bg: #f3ebfff2;
+  /* --gradient-primary: linear-gradient(135deg,hsl(262 100% 65%), hsl(292 100% 70%)); */
+  --gradient-primary: linear-gradient(
+    135deg,
+    hsl(262deg 94.37% 57.43% / 47%),
+    hsl(277deg 96.68% 45.84% / 40%)
+  );
+  --primary-border: 1px solid hsl(220deg 19.37% 77.64% / 49%);
+  --icon-outline: #8d5cd269;
+  --elevated-shadow: 0px 5px 8px rgba(0, 0, 0, 0.3);
+  --box-shadow-accent: 1px 2px 6px 0px rgba(180, 53, 53, 0.871);
+  --border-default: rgba(157, 155, 155, 0.829);
+  --border-faint: #dbdbdb33;
+
+  /* Font, spacing, radii, transitions */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-round: 25%;
+  --nav-padding: 6px;
+  --thumbnail-aspect: 375 / 210;
+  --transition-default: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-mid: 0.3s ease-in-out;
+  --scroll-thumb: rgba(81, 81, 81, 0.705);
+
+  /* sizes */
+  --navbar-height: 3.5rem;
+  --search-width: 30vw;
+  --thumbnail-height: auto; /* we use aspect-ratio normally */
+  --download-modal-width: 350px;
+
+  /* Misc */
+  --checkmark-color: green;
+}
+
+/* Dark theme overrides: apply with `.dark` on a parent (eg. body) */
+.dark {
+  /* --bg: rgb(15, 15, 15); */
+  --bg: hsl(220 13% 9%);
+  --text-color: white;
+  --container-bg: hsl(220 13% 11%);
+  --text-primary: rgb(228, 228, 228);
+  --text-muted: rgb(160, 160, 160);
+  --black-opaque: rgba(248, 248, 248, 0.76);
+  --navbar-background: #181d259c;
+  --accent-2: hsl(220deg 20.21% 19.9% / 66%);
+  --nav-shadow: rgba(0, 0, 0, 0);
+  --primary-border: 1px solid hsl(220 13% 20%);
+
+  /* --panel-surface: #0a0a0ada; */
+  --panel-surface: hsl(220 12.5% 13% /90%);
+  --panel-surface: hsl(217deg 19% 12% / 90%);
+  --icon-bg: rgb(58 52 52);
+  --icon-outline: rgba(176, 173, 173, 0.151);
+  --input-bg: rgb(20, 20, 20);
+  --scroll-thumb: inherit;
+}
+
+/* -------category------ */
+.vid-category {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  position: sticky;
+  padding-block: 9px;
+  margin-inline: 1%;
+  font-size: 15px;
+  transition: background-color var(--transition-default);
+}
+.vid-category div {
+  cursor: pointer;
+  background-color: #e3e3e3;
+  color: var(--text-primary);
+  padding: 8px;
+  gap: 3px;
+  min-width: max-content;
+  border-radius: 8px;
+  transition: transform 0.06s ease-in-out;
+  border: var(--primary-border);
+}
+.vid-category #div1 {
+  color: var(--bg, #fff);
+  background-color: var(--black-opaque, #000);
+}
+.vid-category .last-div {
+  border-radius: 50%;
+  background-color: transparent;
+  padding-inline: 12px;
+}
+.vid-category div:hover {
+  background-color: #d2d2d2;
+  transform: scale(1.05);
+  color: var(--bg);
+  background: var(--gradient-primary);
+  box-shadow: 1px 2px 2px -1px rgba(11, 249, 31, 0.856);
+}
+.vid-category .active {
+  background-color: #c9c9c9;
+  transform: scale(1.05);
+  color: var(--accent);
+  box-shadow: 1px 2px 2px -1px #ef3535f1;
+  font-weight: 600;
+}
+
+/* ------------------- Left panel ----------------- */
+.left-panel-container {
+  position: fixed;
+  height: calc(99.8vh - var(--navbar-height));
+  overflow: hidden scroll;
+  scrollbar-color: transparent transparent;
+  scrollbar-width: thin;
+  padding: 0.9rem;
+  width: 13.5rem;
+  border: var(--primary-border);
+  /* border-top-left-radius: 1rem; */
+  border-top: none;
+  border-bottom-left-radius: 1rem;
+  background-color: var(--sidebar-background);
+}
+.left-panel {
+  font-size: 0.88rem;
+}
+.left-panel img {
+  height: 1.1rem;
+  box-sizing: content-box;
+  padding-bottom: 2px;
+  border-bottom: 3px solid transparent;
+}
+.shortcuts {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.shortcut-GroupLabel {
+  font-size: 13px;
+  margin-block: 3px;
+}
+.shortcuts .active img {
+  padding-bottom: 2px;
+  border-bottom: 3px solid var(--accent);
+}
+
+.left-panel a {
+  justify-content: start;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 8px;
+  gap: 10px;
+  transition: all 0.06s ease-in;
+  display: flex;
+  color: hsl(45 100% 70%);
+}
+.left-panel .active {
+  font-size: medium;
+  transform: scale(1.01);
+  background-color: var(--accent-2);
+}
+.left-panel a:hover {
+  background-color: var(--accent-2);
+  transform: scale(1.01);
+  font-size: medium;
+}
+
+.left-panel hr {
+  height: 0.1px;
+  background-color: var(--border-default);
+  margin-block: 10px;
+}
+
+/* changing the margin of .main on adding the class ".narrow-panel" */
+@media (min-width: 774px) {
+  .narrow-panel ~ .main {
+    margin-left: 4rem;
+  }
+
+  .narrow-panel a {
+    justify-content: center;
+  }
+  .narrow-panel h4,
+  .narrow-panel p {
+    display: none;
+  }
+  .narrow-panel .shortcut-GroupLabel {
+    display: none;
+  }
+  .left-panel-container:has(.narrow-panel) {
+    width: unset;
+    padding-inline: 0.6rem 0;
+    border-right: none;
+  }
+  .page-manager:has(.narrow-panel) .main {
+    margin-left: 4rem;
+  }
+}
+
+/* ------------------- Main --------------------- */
+.main {
+  gap: 10px 0;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  display: block;
+  margin-left: 14rem;
+  transition: margin var(--transition-default);
+}
+.video-area {
+  display: flex;
+  gap: 30px 2%;
+  flex-wrap: wrap;
+  overflow: hidden;
+  padding-inline: 1%;
+  align-items: flex-start;
+  display: grid;
+  /* gap: 1rem; */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  align-items: start;
+  padding: 1rem;
+}
+
+/* Banner */
+.banner {
+  height: 400px;
+  width: 100%;
+  border-radius: 10px;
+  top: 0;
+  /* background-image: url(/static/images/banner.png); */
+  background-image: url("../images/hero-banner.jpg");
+  background-size: cover;
+  position: sticky;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.banner-overlay {
+  background-image: linear-gradient(
+    to top,
+    var(--bg),
+    hsla(240, 10%, 8%, 0.329),
+    transparent
+  );
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  gap: 1rem;
+  padding: 5%;
+  /* background-image: linear-gradient(
+    to top,
+    hsl(0 0% 100%),
+    hsl(0 0% 100% / 0.5),
+    transparent
+  ); */
+}
+.banner h1 {
+  /* background-clip: text;
+  background-image: linear-gradient(
+    to right,
+    hsl(240deg 83% 53% / 99%),
+    hsl(309deg 77.84% 47.22%)
+  );
+  color: transparent; */
+  color: white;
+  min-width: max-content;
+  font-size: 3rem;
+}
+.banner h1 p {
+  color: hsl(189 94% 55%);
+}
+.banner .remove-banner {
+  cursor: pointer;
+  align-self: flex-end;
+  display: inline-block;
+  position: absolute;
+  right: 1%;
+  top: 2%;
+}
+.banner h2 {
+  color: var(--text-color, #fff);
+  display: inline;
+  font-family: var(--ff);
+  font-size: 1.5rem;
+}
+.banner .hero-descriotion {
+  font-size: 18px;
+  line-height: 1.5;
+  max-width: 45rem;
+  color: var(--text-muted);
+}
+.banner span {
+  color: rgb(26, 5, 184);
+  font-family: inherit;
+}
+
+.banner .btn1 {
+  display: flex;
+  padding: 8px 16px;
+  align-items: center;
+  border-radius: 8px;
+  border: none;
+  background: hsl(189 94% 55%);
+  font-weight: 600;
+  gap: 8px;
+  cursor: pointer;
+}
+.banner .btn2 {
+  background: transparent;
+  padding: 4px;
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  border-radius: 8px;
+  border: none;
+  padding: 8px 16px;
+  font-weight: 600;
+  color: white;
+  border: 2px solid;
+  cursor: pointer;
+}
+.banner .btn1:hover {
+  box-shadow: hsl(189deg 94% 55%) 0 0 15px 1px;
+}
+.banner .btn2:hover {
+  /* border-color: hsl(0, 0%, 54%); */
+  color: var(--text-muted);
+}
+/* Channel box */
+.channel {
+  background-color: var(--panel-surface);
+  justify-content: center;
+  background-color: var(--panel-surface);
+  border-radius: var(--radius-lg);
+  padding: 10px;
+  transition: background-color var(--transition-default),
+    transform var(--transition-fast);
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+}
+.channel:hover {
+  transform: scale(1.01);
+  box-shadow: 1px 2px 6px 0px rgba(180, 53, 53, 0.871);
+}
+.channel .channel-details {
+  transition: all var(--transition-default);
+}
+.channel-image-box {
+  width: 40%;
+}
+.channel-image {
+  border-radius: 50%;
+  width: 135px;
+}
+.channel .channel-details {
+  justify-content: center;
+  flex-direction: column;
+  font-size: small;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  color: var(--text-primary);
+}
+.channel .channel-title {
+  font-size: large;
+  padding-bottom: 5px;
+  color: var(--text-primary);
+}
+.channel .subscribe-button {
+  padding: 10px 12px;
+  border-radius: 20px;
+  color: var(--bg, #fff);
+  background-color: var(--black-opaque, #000);
+  font-size: 14px;
+  transition: all var(--transition-default);
+}
+
+/*---------------- vid-box -------------- */
+
+.main .vid-box {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background-color: var(--panel-surface);
+  transition: all var(--transition-default);
+  border: var(--primary-border);
+  height: 100%;
+}
+
+.main .playlist .thumbnail-container {
+  box-shadow: 0px -9px 3px -8px #79787896;
+  border-top: 4px double #767676e3;
+}
+.main .vid-box .thumbnail-container {
+  position: relative;
+  aspect-ratio: 375/210;
+  transition: transform var(--transition-default);
+  overflow: hidden;
+  display: flex;
+  place-items: center;
+}
+
+.vid-box .progress-bar {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  background-color: #3f22408f;
+  border-bottom: 3px solid #8236d1;
+}
+.main .vid-details {
+  display: flex;
+  padding: 2% 5%;
+  font-size: 12px;
+  gap: 15px;
+  justify-content: space-between;
+  padding: 1rem;
+  padding-right: 0;
+  /* color: var(--text-color); */
+}
+
+.vid-title {
+  max-height: 47px;
+  overflow: hidden;
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 13.5px;
+  line-height: 1.25;
+}
+.vid-description {
+  max-height: 51px;
+  overflow: hidden;
+}
+.vid-details h4 {
+  color: var(--text-primary);
+}
+.vid-details .channel-title {
+  color: #05627e;
+  margin-block: 8px 3px;
+}
+
+/* Responsive breakpoints */
+
+@media (max-width: 774px) {
+  .left-panel-container {
+    z-index: 3;
+    background-color: var(--bg);
+    transition: transform var(--transition-default);
+    transform: translate(-100%); /*by dafault panel wiil be disappear*/
+  }
+  /*  for small devices narrow-panel works as full-panel */
+  .left-panel-container:has(.narrow-panel) {
+    transform: translate(0);
+  }
+  .page-manager .main {
+    margin-left: 0;
+  }
+}
+@media (max-width: 580px) {
+  html {
+    scrollbar-width: none;
+  }
+}
+
+/* vid-category dark style */
+
+.dark .vid-category div {
+  background-color: rgb(60, 60, 60);
+}
+
+/* ===========================
+   Image-backed theme (keeps original images)
+   =========================== */
+
+.image-backed .left-panel p,
+.image-backed .left-panel h4 {
+  color: white;
+}
+.image-backed .vid-category {
+  background: transparent;
+}

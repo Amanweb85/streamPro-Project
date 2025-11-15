@@ -1,0 +1,175 @@
+<!-- -------------- left panel (sidebar)------------------- -->
+<div class="left-panel narrow-panel">
+  <div class="shortcuts">
+    <a class="flex-box">
+      <img alt="" src="/dist/images/home.png" />
+      <p>Home</p>
+    </a>
+    <a class="flex-box">
+      <img alt="" src="/dist/images/history.png" />
+      <p>History</p>
+    </a>
+    <a class="flex-box">
+      <img alt="" src="/dist/images/explore.png" />
+      <p>Explore</p>
+    </a>
+    <a class="flex-box">
+      <img alt="" src="/dist/images/cast.png" />
+      <p>Cast</p>
+    </a>
+    <a class="flex-box">
+      <img alt="" src="/dist/images/library.png" />
+      <p>Library</p>
+    </a>
+    <a class="flex-box">
+      <img alt="" src="/dist/images/like.png" />
+      <p>Liked Videos</p>
+    </a>
+    <a class="flex-box">
+      <img alt="" src="/dist/images/playlist.png" />
+      <p>Playlists</p>
+    </a>
+    <a class="flex-box">
+      <img alt="" src="/dist/images/subscription.png" />
+      <p>Subscription</p>
+    </a>
+    <a class="flex-box">
+      <img alt="" src="/dist/images/show-more.png" />
+      <p>Show more</p>
+    </a>
+  </div>
+  <hr />
+  <div class="subscribed">
+    <h4>SUBSCRIBED</h4>
+    <a class="flex-box" href="">
+      <img alt="" src="/dist/images/tech-burner.jpg" />
+      <p>Tech Burner</p>
+    </a>
+    <a class="flex-box" href="">
+      <img alt="" src="/dist/images/apna-college.jpg" />
+      <p>Apna College</p>
+    </a>
+    <a class="flex-box" href="">
+      <img alt="" src="/dist/images/procodrr.jpg" />
+      <p>Procodrr</p>
+    </a>
+    <a class="flex-box" href="">
+      <img alt="" src="/dist/images/vigyan-recharge.jpg" />
+      <p>Vigyan Recharge</p>
+    </a>
+    <a class="flex-box" href="">
+      <img alt="" src="/dist/images/english-connection.jpg" />
+      <p>English Connection</p>
+    </a>
+    <a class="flex-box" href="">
+      <img alt="" src="/dist/images/english-connection.jpg" />
+      <p>English Connection</p>
+    </a>
+  </div>
+</div>
+
+<!-- --------------------playing video---------------------  -->
+
+<div class="main-container flex-box">
+  <div class="left-video-container">
+    <div>
+      <div id="player">
+        <!-- The <iframe> (and video player) will replace this <div> tag -->
+        <p>Something went Wrong...</p>
+        <p>please check your internet.</p>
+      </div>
+    </div>
+    <div class="video-title">
+      <h3>
+        Placement & Internship Strategy for last 7-8 months | August 2025
+        onwards season
+      </h3>
+      <p class="category">Education</p>
+    </div>
+    <div class="flex-box vid-options">
+      <p>
+        <img class="eye-icon" src="/dist/images/icon-eye.png" alt="view" />
+        <span class="view-count">1M</span>
+        <img class="time-icon" src="/dist/images/icon-time.png" alt="time" />
+        <span class="time">2 years</span>
+      </p>
+      <div class="flex-box action">
+        <div>
+          <img alt="" src="/dist/images/like.svg" />
+          <p class="like-count">764</p>
+        </div>
+        <div>
+          <img alt="" src="/dist/images/dislike.svg" />
+          <p>4</p>
+        </div>
+        <div>
+          <img alt="" src="/dist/images/share.svg" />
+          <p>share</p>
+        </div>
+        <div>
+          <img alt="" src="/dist/images/playlist.svg" />
+          <p>save</p>
+        </div>
+      </div>
+    </div>
+    <div class="vid-info">
+      <div class="subscribe-box flex-box">
+        <div class="flex-box box1">
+          <img alt="" class="channel-author" src="/dist/images/apna-college.jpg" />
+          <div>
+            <h3 class="channel-name">Apna College</h3>
+            <p><span class="subscriber-count">500</span> Followers</p>
+          </div>
+        </div>
+        <button type="button" class="subscribe-btn">Follow</button>
+      </div>
+      <div class="video-description small-video-description">
+        <h3>Description</h3>
+        <div>
+          Subscribe Apna college to watch more Tutorials on Web Development
+          <p>channel thats makes kearnng Easy</p>
+        </div>
+      </div>
+      <p class="show-more-description comment1">Show More ...</p>
+
+      <!-- ------comment-container------- -->
+      <div class="comment-container">
+        <hr />
+        <h3 class="comment-header">
+          <img src="/dist/images/icon-comment.png" alt="" /> Comments
+          <span class="comment-count"><%=comments.pageInfo.totalResults %></span>
+        </h3>
+        <div class="write-comment flex-comment">
+          <textarea type="text" placeholder="Add a comment..." resize-none></textarea>
+          <button class="post-comment disabled">Post Comment</button>
+        </div>
+
+        <% comments.items.forEach(data=> { %>
+        <%-
+        include('partials/watch/comment-card', { data }) %>
+        <% }) %>
+      </div>
+      <p class="more-comments comment1">more comments ...</p>
+    </div>
+  </div>
+
+  <!-- -----------right-panel------------ -->
+
+  <div class="right-panel">
+    <div class="vid-category">
+      <div id="div1">All</div>
+      <div>From your search</div>
+      <div>From Apna College</div>
+      <div>Comedy</div>
+      <div>Related</div>
+      <div>For you</div>
+      <div>Recently uploaded</div>
+      <div class="last-div">></div>
+    </div>
+    <!-- [suggested video data ] -->
+    <% suggestedVideos.items.forEach(item=> { %>
+    <%-
+    include('partials/watch/video-card', { item }) %>
+    <% }) %>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<!--  navbar  -->
+<div class="navbar flex-box">
+  <div class="nav-box1 flex-box">
+    <div class="menu-icon-box ">
+      <img alt="" id="menu-icon" src="/dist/images/menu.png" />
+    </div>
+    <div class="flex-box">
+      <img alt="" class="logo" src="/dist/images/logo.png" />
+      &nbsp;StreamPro
+    </div>
+  </div>
+  <div class="nav-box2 flex-box">
+    <div class="search-container flex-box">
+      <input type="text" class="search-box" placeholder="search ..." />
+      <img alt="" id="search-icon" src="/dist/images/search.png" />
+    </div>
+    <div class="voice-icon-box icon-container">
+      <img alt="" src="/dist/images/voice-search.png" />
+    </div>
+  </div>
+  <div class="nav-box3 flex-box">
+    <!-- <div class="icon-container">
+        <img alt="" src="/dist/images/upload.png">
+      </div>
+      <div class="icon-container">
+        <img alt="" src="/dist/images/more.png">
+      </div>
+      <div class="icon-container">
+        <img alt="" src="/dist/images/notification.png">
+      </div> -->
+    <% if (!user) { %>
+    <div class="open-signIn-auth-btn">Sign In</div>
+    <div class="open-signUp-auth-btn">Sign Up</div>
+    <% } %>
+    <img alt="" id="photo" src="/dist/images/aman.jpg" />
+
+  </div>
+</div>

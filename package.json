@@ -1,0 +1,48 @@
+{
+  "name": "electron-with-server",
+  "version": "1.0.0",
+  "description": "An Electron app that displays content from a local Node.js server.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "clean": "rimraf public/dist",
+    "build:js": "node build.js",
+    "build:images": "cpx \"src/images/**/*\" \"public/dist/images\"",
+    "build": "npm run clean && concurrently \"npm:build:js\" \"npm:build:images\"",
+    "server:dev": "nodemon server.js",
+    "watch:js": "node build.js --watch",
+    "watch:images": "cpx \"src/images/**/*\" \"public/dist/images\" --watch",
+    "dev": "concurrently \"npm:server:dev\" \"npm:watch:js\" \"npm:watch:images\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "bcryptjs": "^3.0.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "googleapis": "^160.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.5.3",
+    "node-fetch": "^3.3.2",
+    "nodemailer": "^7.0.6",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-jwt": "^4.0.1",
+    "router": "^2.2.0",
+    "ws": "^8.18.3",
+    "ytdl-core": "^4.11.5"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "cpx": "^1.2.1",
+    "esbuild": "^0.25.10",
+    "nodemon": "^3.1.0"
+  }
+}

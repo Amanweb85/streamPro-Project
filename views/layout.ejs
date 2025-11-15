@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    <%= title %>
+  </title>
+  <link rel="icon" href="/dist/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="/dist/layout.css" />
+  <% if (cssFile) { %>
+  <link rel="stylesheet" href="/dist/<%= cssFile %>" />
+  <% } %>
+
+  <% if (cssFile=='watch.css' ) { %>
+  <script>
+    window.__APP_DATA__ = <%- JSON.stringify({id: videoId,listId: listId ,seekTo})%>;
+  </script>
+  <script src="/dist/player.js"></script>
+  <% } else{ %>
+  <script src="/dist/autowriting.js" defer></script>
+  <%}%>
+
+  <!-- user authorization popup  -->
+  <% if (!user) { %>
+  <link rel="stylesheet" href="/dist/auth.css" />
+  <script type="module" src="/dist/auth.js"></script>
+  <% } %>
+</head>
+
+
+<body class="">
+  <%- include('partials/navbar') %>
+  <%- include(viewName)%>
+  <!-- ******************* popups ************************** -->
+  <!-- @REM user authorization popup -->
+  <% if (!user) { %>
+  <%- include('partials/authPopup') %>
+  <% } %>
+  <!-- option list box  -->
+  <div class="option-listbox">
+    <p class="watch-later"> <img alt="" src="https://cdn-icons-png.flaticon.com/128/7635/7635476.png" />
+      save to watch later </p>
+    <p class="save-to-playlist"> <img alt="" src="https://cdn-icons-png.flaticon.com/128/5765/5765569.png" />
+      save to playlist </p>
+    <p class="download"> <img alt="" src="https://cdn-icons-png.flaticon.com/128/9797/9797374.png" />
+      download </p>
+    <p class="share"> <img alt="" src="https://cdn-icons-png.flaticon.com/128/3925/3925154.png" />
+      share </p>
+    <p class="not-interested"> <img alt="" src="https://cdn-icons-png.flaticon.com/128/4460/4460987.png" />
+      not interested </p>
+  </div> <!-- -----------account-popup-------------- -->
+  <div class="acc-popup">
+    <div class="acc-section"> <img alt="" class="acc-photo" src="/dist/images/aman.jpg" />
+      <div class="acc-name">
+        <p>Aman Verma</p>
+        <p>@amanverma7381</p> <a href="channel.html">View your
+          channel</a>
+      </div>
+    </div>
+    <hr />
+    <div class="options"> <a href="account.html" class="flex-box"> <img alt="" src="/dist/images/home.png" />
+        <p>Google Account</p>
+      </a> <a class="flex-box"> <img alt="" src="/dist/images/history.png" />
+        <p>Switch account <span>></span></p>
+      </a> <a href="/api/auth/logout" class="sign-out flex-box "> <img alt="" src="/dist/images/explore.png" />
+        <p>Sign out</p>
+      </a>
+      <hr /> <a href="vidStudio.html" class="flex-box"> <img alt="" src="/dist/images/cast.png" />
+        <p>StreamPro Studio</p>
+        <hr /> <a href="data.html" class="flex-box"> <img alt="" src="/dist/images/like.png" />
+          <p>Your data in StreamPro</p>
+        </a> <a class="appearance flex-box"> <img alt="" src="/dist/images/playlist.png" />
+          <p>Appearance: Light <span>></span></p>
+        </a> <a class="language flex-box"> <img alt="" src="/dist/images/subscription.png" />
+          <p>Language: British English<span>></span></p>
+        </a> <a class="flex-box"> <img alt="" src="/dist/images/cast.png" />
+          <p>Restricted Mode: Off <span>></span></p>
+        </a> <a class="location flex-box"> <img alt="" src="/dist/images/library.png" />
+          <p>Location: India<span>></span></p>
+        </a> <a class="flex-box"> <img alt="" src="/dist/images/like.png" />
+          <p>Keyboard shortcuts</p>
+        </a>
+        <hr /> <a class="flex-box"> <img alt="" src="/dist/images/playlist.png" />
+          <p>Settings</p>
+        </a>
+        <hr /> <a class="flex-box"> <img alt="" src="/dist/images/subscription.png" />
+          <p>Help</p>
+        </a> <a class="flex-box"> <img alt="" src="/dist/images/show-more.png" />
+          <p>Send feedback</p>
+        </a>
+    </div>
+  </div> <!-- -----------appearance-popup-------------- -->
+  <div class="appearance-popup popup">
+    <p><a class="go-back"> &#10140; </a> Appearance</p>
+    <hr /> <a class="dark-theme">
+      <p>Dark Theme</p>
+    </a> <a class="light-theme">
+      <p>Light Theme</p>
+    </a> <a class="light-image-backed">
+      <p>Light image Theme</p>
+    </a> <a class="dark-image-backed">
+      <p>dark image Theme</p>
+    </a>
+  </div> <!-- ------------language-popup-------------- -->
+  <div class="language-popup popup">
+    <p><a class="go-back"> &#10140; </a> Choose your language</p>
+    <hr />
+    <% languages.forEach(lan=> { %><a>
+      <%= lan %>
+    </a>
+    <% }) %>
+  </div> <!-- ------------location-popup-------------- -->
+  <div class="location-popup popup">
+    <p><a class="go-back"> &#10140; </a> Choose your location</p>
+    <hr />
+    <% locations.forEach(loc=> { %><a>
+      <%= loc %>
+    </a>
+    <% }) %>
+  </div>
+  <!-------------- downlaod progress area ------------>
+  <div class="download-area">
+    <!-- <a class="cancel-btn"> &#x2716;</a> -->
+    <!--  area for downloading progress  -->
+  </div>
+  <!--------------- video-metadata-container ------------>
+  <div class="download-metadata-container">
+    <div class="header-container">
+      <div class="go-back icon-container">
+        <p>&#10140;</p>
+      </div>
+      <h2>Download</h2>
+      <div class="okay icon-container">&#10004;</div>
+    </div>
+    <div class="metadata-container">
+      <div class="video-info"> <img alt="" class="thumbnail" src="https://i.ytimg.com/vi/NWnBxQjssvQ/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&amp;rs=AOn4CLA1U2yNQeEP-XC2Rw8n8HH08Pj5jQ" />
+        <div class="video-title">
+          <p> Web Development Full Course [2024] | Complete Roadmap
+            for Web Developers | Edureka </p>
+        </div>
+      </div>
+      <hr />
+      <div class="format-container">
+        <form id="download-form"> <label class="url-copy-label"> <input type="text" class="download-url-input" name="videoUrl" readonly value="https://www.youtube.com/watch?v=dc3FJMvuUqc&amp;pp=ygUGdmlkZW9z" />
+            <span class="url-copy-btn"> Copy</span> </label>
+          <div class="types"> <input type="radio" id="type-video" name="fileType" value="video" checked />
+            <label for="type-video">video</label> &nbsp;&nbsp;&nbsp;
+            <input type="radio" id="type-audio" name="fileType" value="audio" /> <label for="type-audio">audio</label>
+          </div>
+          <div class="video-formats"></div> <button type="submit">
+            click here to download <img alt="" class="download-img" src="https://cdn-icons-png.flaticon.com/128/9797/9797374.png" />
+          </button>
+        </form>
+      </div>
+    </div>
+  </div> <!--  AI Assistent  -->
+  <div class="chat-bot-button"> <img src="/dist/images/icon-chat.svg" alt="" /> </div>
+  <div class="chat-bot-container">
+    <div class="chat-bot-header">
+      <h3>StreamPro Assistant</h3> <button class="cancel-btn" type="button">&#x2716;</button>
+    </div>
+    <div class="chat-box">
+      <div class="chat-area">
+        <div class="default-msg"> Hi! I'm your StreamPro assistant. Ask
+          me about videos! </div>
+      </div>
+    </div>
+    <div class="chat-bot-footer"> <input class="chat-bot-input" type="text" placeholder="Ask me anything..." /> <button class="send-btn" type="button"> <img src="/dist/images/icon-send.png" alt="" />
+      </button> </div>
+  </div>
+
+  <!-- flashing messages -->
+  <!-- <p class="flash-message success-msg">hii there i am aman verma </p> -->
+
+  <% if (success_msg.length>0) { %>
+  <p class="flash-message success-msg"><%= success_msg[0] %></p>
+  <% } else if (error_msg){  %>
+  <p class="flash-message error-msg"><%= error_msg[0] %></p>
+  <% } %>
+
+
+  <!--*************** javascript files *******************-->
+  <% if (scripts && scripts.length) { %>
+  <% scripts.forEach(src=> { %>
+  <script src="<%= src %>" defer></script>
+  <% }) %>
+  <% } %>
+  <!-- <script  src="/dist/js/ApiData/locationsAndLanguages.js"      type="module"  ></script> -->
+  <!-- <script src="/dist/js/controlUsingVoice.js" type="module"></script> -->
+</body>
+
+</html>

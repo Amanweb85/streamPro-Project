@@ -1,0 +1,18 @@
+<div class="comment1">
+  <img src="<%=data.snippet.topLevelComment.snippet.authorProfileImageUrl%>" />
+  <div class="comment-content">
+    <div class="comment-head flex-comment">
+      <h4 class="comment-author-name">
+        <%=data.snippet.topLevelComment.snippet.authorDisplayName%>
+      </h4>
+      <span><%=changeTimeFormate(data.snippet.topLevelComment.snippet.publishedAt)%></span>
+    </div>
+    <div class="comment-data"><%-data.snippet.topLevelComment.snippet.textDisplay%></div>
+    <div class="comment-action flex-comment">
+      <img alt="" src="/dist/images/like.svg" />
+      <p><%=data.snippet.topLevelComment.snippet.likeCount || 0%></p>
+      <img alt="" src="/dist/images/dislike.svg" />
+      <p>0</p>
+    </div>
+  </div>
+</div>

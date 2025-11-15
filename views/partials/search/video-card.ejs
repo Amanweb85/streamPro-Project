@@ -1,0 +1,34 @@
+<!-- video-card -->
+<a class="video vid-box" href="/watch?id=<%=item.id %><%if(item.seekTime){%>&t=<%=Math.floor(item.seekTime)%><%}%>" id="<%=item.id %>">
+  <div class="thumbnail-container">
+    <img class="thumbnail" src="<%=item.snippet.thumbnails.maxres?.url || item.snippet.thumbnails.high?.url || item.snippet.thumbnails.medium?.url %>" alt=" thumbnail" />
+    <div class="play-icon-container">
+      <img class="play-icon" src="/dist/images/icon-play.png" alt="Play icon" />
+    </div>
+    <p class="vid-duration" data-duration=<%=item.contentDetails?.duration%>>
+      <%= item.contentDetails?.duration ?
+      changeVidDurationFormat(item.contentDetails?.duration.replace("PT",
+      "").replace("S", "").split("M").reduce((a, val) => parseInt(a) * 60 +
+      parseInt(val), 0)) : "" %>
+    </p>
+    <% if (item.seekTime && item.contentDetails && item.contentDetails.duration) { %>
+    <div class="progress-bar" style="width: <%= item.seekTime * 100 / (+item.contentDetails.duration) %>%;">
+    </div>
+    <% } %>
+  </div>
+  <div class="vid-details">
+    <div>
+      <div class="vid-title">
+        <p><%= item.snippet.title %></p>
+      </div>
+      <h4 class="channel-title"><%= item.snippet.channelTitle %></h4>
+      <div class="views-time-container">
+        <img class="eye-icon" src="/dist/images/icon-eye.png" alt="Views icon" />&nbsp;
+        <span class="views" data-view-count=<%=item.statistics?.viewCount %>><%= changeFormate(item.statistics?.viewCount || 89) %></span>&nbsp;&nbsp;
+        <img class="time-icon" src="/dist/images/icon-time.png" alt="Time icon" />&nbsp;
+        <span class="published-duration" data-published-at=<%=item.snippet?.publishedAt%>><%= changeTimeFormate(item.snippet.publishedAt) %></span>
+      </div>
+    </div>
+    <span class="three-dots">&#8942;</span>
+  </div>
+</a>

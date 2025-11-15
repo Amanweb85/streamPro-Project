@@ -1,0 +1,27 @@
+<a class="playlist vid-box " href="/watch?listId=<%= item.id %>" id=<%= item.id %>>
+  <div class="thumbnail-container">
+    <img class="thumbnail" style="object-fit: cover; width: 100%" src="<%= item.snippet.thumbnails.maxres?.url || item.snippet.thumbnails.high?.url || item.snippet.thumbnails.medium?.url %>" alt="thumbnail" />
+    <div class="play-icon-container">
+      <img class="play-icon" src="/dist/images/icon-play.png" alt="Play icon" />
+    </div>
+    <p class="playlist-itemCount" data-item-count=<%=item.contentDetails.itemCount %>>
+      <img src="https://cdn-icons-png.flaticon.com/128/4043/4043804.png" width="12px" alt="Playlist icon" /> &nbsp;
+      <%=item.contentDetails.itemCount %>&nbsp;videos
+    </p>
+  </div>
+  <div class="vid-details">
+    <div>
+      <div class="vid-title">
+        <p><%= item.snippet.title %></p>
+      </div>
+      <h4 class="channel-title"><%= item.snippet.channelTitle %></h4>
+      <div class="views-time-container">
+        <!-- <img class="eye-icon" src="/dist/images/icon-eye.png" alt="Views icon" />&nbsp; -->
+        <!-- <span class="views"></span>&nbsp;&nbsp; -->
+        <img class="time-icon" src="/dist/images/icon-time.png" alt="Time icon" />&nbsp;
+        <span class="published-duration" data-published-at=<%=item.snippet.publishedAt%>> <%=changeTimeFormate(item.snippet.publishedAt) %></span>
+      </div>
+    </div>
+    <span class="three-dots">&#8942;</span>
+  </div>
+</a>
